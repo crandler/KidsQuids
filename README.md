@@ -2,6 +2,8 @@
 
 A colorful mouse learning game for children aged 3-6 years.
 
+**[Play Now](https://crandler.github.io/KidsQuids/)**
+
 ## Features
 
 - **4 Game Modes:**
@@ -77,7 +79,7 @@ KidsQuids/
 
 ## Version History
 
-### v1.0.0 (2024-11-26)
+### v1.0.0 (2025-11-26)
 - Initial release
 - 4 game modes: Click, Catch, Drag, Double-click
 - 3 difficulty levels with progression

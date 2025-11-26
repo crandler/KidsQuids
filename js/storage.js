@@ -124,7 +124,6 @@ class StorageManager {
     addCoins(amount) {
         this.data.totalCoins += amount;
         this.save();
-        this.checkUnlocks();
         return this.data.totalCoins;
     }
 
@@ -136,7 +135,6 @@ class StorageManager {
     addStars(amount) {
         this.data.totalStars += amount;
         this.save();
-        this.checkUnlocks();
         return this.data.totalStars;
     }
 
@@ -155,7 +153,6 @@ class StorageManager {
             prog.bestScore = score;
         }
         this.save();
-        this.checkUnlocks();
     }
 
     getLevelProgress(difficulty, mode) {

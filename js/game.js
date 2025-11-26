@@ -997,26 +997,30 @@ class Game {
     renderUnlockScreen() {
         const unlock = this.pendingUnlocks.shift();
 
-        let title, description;
+        let title, description, icon;
         if (unlock.type === 'mode') {
             title = i18n.t('modeUnlocked');
             description = i18n.t(`mode${unlock.name.charAt(0).toUpperCase() + unlock.name.slice(1)}`);
+            icon = this.getModeIcon(unlock.name);
         } else if (unlock.type === 'difficulty') {
             title = i18n.t('newUnlock');
             description = i18n.t(`difficulty${unlock.name.charAt(0).toUpperCase() + unlock.name.slice(1)}`);
+            icon = `<svg viewBox="0 0 24 24" width="100" height="100">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>`;
         } else {
             title = i18n.t('themeUnlocked');
             description = unlock.name;
+            icon = `<svg viewBox="0 0 24 24" width="100" height="100">
+                <circle cx="12" cy="12" r="10"></circle>
+            </svg>`;
         }
 
         const html = `
-            <div class="unlock-screen">
-                <h2 data-i18n="newUnlock">${title}</h2>
+            <div class="unlock-screen" id="unlock-container">
+                <h2>${title}</h2>
                 <div class="unlock-icon">
-                    <svg viewBox="0 0 24 24" width="80" height="80">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="2"></path>
-                    </svg>
+                    ${icon}
                 </div>
                 <p class="unlock-name">${description}</p>
                 <button class="btn btn-primary" onclick="game.continueAfterUnlock()">
@@ -1028,12 +1032,39 @@ class Game {
         this.uiContainer.innerHTML = html;
         soundManager.playUnlock();
 
-        // Big celebration
-        for (let i = 0; i < 8; i++) {
+        // Add sparkle particles to unlock screen
+        const container = document.getElementById('unlock-container');
+        this.createSparkles(container, 20);
+
+        // Big celebration confetti
+        for (let i = 0; i < 12; i++) {
             setTimeout(() => {
                 const x = Math.random() * this.canvas.width;
-                this.confetti.push(...createConfettiBurst(x, this.canvas.height / 2, 30, this.theme));
+                this.confetti.push(...createConfettiBurst(x, this.canvas.height / 2, 40, this.theme));
+            }, i * 80);
+        }
+    }
+
+    createSparkles(container, count) {
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+                sparkle.style.width = (5 + Math.random() * 10) + 'px';
+                sparkle.style.height = sparkle.style.width;
+                container.appendChild(sparkle);
+
+                // Remove after animation
+                setTimeout(() => sparkle.remove(), 1500);
             }, i * 100);
+        }
+
+        // Keep creating sparkles
+        if (this.currentScreen === 'unlock') {
+            setTimeout(() => this.createSparkles(container, 10), 1500);
         }
     }
 

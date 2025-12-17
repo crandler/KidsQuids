@@ -65,8 +65,6 @@ KidsQuids/
 │   ├── sounds.js       # Sound manager (Web Audio API)
 │   ├── storage.js      # Progress persistence
 │   └── i18n.js         # Internationalization
-├── assets/
-│   └── sounds/         # Sound files (currently using Web Audio API)
 └── README.md
 ```
 
@@ -78,6 +76,11 @@ KidsQuids/
 - Edge 79+
 
 ## Version History
+
+### v1.0.1 (2025-12-17)
+- Remove unused functions and CSS classes
+- Remove unused stats fields from storage
+- Update project structure documentation
 
 ### v1.0.0 (2025-11-26)
 - Initial release

@@ -360,11 +360,6 @@ class Shape {
     setExpression(expr) {
         this.expression = expr;
     }
-
-    moveTo(x, y) {
-        this.targetX = x;
-        this.targetY = y;
-    }
 }
 
 // Confetti particle for celebrations

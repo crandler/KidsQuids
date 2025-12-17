@@ -11,7 +11,7 @@ class StorageManager {
 
     getDefaultData() {
         return {
-            version: '1.0.0',
+            version: '1.0.1',
             totalCoins: 0,
             totalStars: 0,
 
@@ -65,11 +65,8 @@ class StorageManager {
 
             // Statistics
             stats: {
-                totalClicks: 0,
                 totalGamesPlayed: 0,
-                totalTimePlayed: 0, // in seconds
                 shapesClicked: 0,
-                shapesCaught: 0,
                 shapesDropped: 0,
                 doubleClicks: 0
             }
@@ -263,10 +260,6 @@ class StorageManager {
             this.data.stats[stat] += amount;
             this.save();
         }
-    }
-
-    getStats() {
-        return { ...this.data.stats };
     }
 }
 

@@ -1029,41 +1029,6 @@ body {
     }
 }
 
-/* Loading Animation */
-.loading {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    padding: 40px;
-}
-
-.loading span {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    animation: loading-bounce 1s ease infinite;
-}
-
-.loading span:nth-child(1) {
-    background: #FF6B6B;
-    animation-delay: 0s;
-}
-
-.loading span:nth-child(2) {
-    background: #4ECDC4;
-    animation-delay: 0.15s;
-}
-
-.loading span:nth-child(3) {
-    background: #45B7D1;
-    animation-delay: 0.3s;
-}
-
-@keyframes loading-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
 /* Print styles - hide game */
 @media print {
     .game-container {

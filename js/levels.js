@@ -129,11 +129,6 @@ function calculateStars(score, maxScore) {
     return 0;
 }
 
-// Get max level for a mode/difficulty
-function getMaxLevel(mode, difficulty) {
-    return LEVELS[mode]?.[difficulty]?.length || 5;
-}
-
 // Mode descriptions for UI
 const MODE_INFO = {
     click: {

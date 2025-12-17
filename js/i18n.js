@@ -193,10 +193,6 @@ class I18n {
             el.placeholder = this.t(key);
         });
     }
-
-    getAvailableLanguages() {
-        return Object.keys(translations);
-    }
 }
 
 const i18n = new I18n();

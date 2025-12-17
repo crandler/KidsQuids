@@ -85,13 +85,6 @@ class SoundManager {
         setTimeout(() => this.playTone(1400, 0.15, 'sine', 0.3), 80);
     }
 
-    // Play coin collected sound
-    playCoin() {
-        if (!this.enabled || !this.initialized) return;
-        this.playTone(988, 0.08, 'square', 0.2);
-        setTimeout(() => this.playTone(1319, 0.12, 'square', 0.2), 80);
-    }
-
     // Play unlock sound
     playUnlock() {
         if (!this.enabled || !this.initialized) return;
@@ -105,38 +98,6 @@ class SoundManager {
     playMiss() {
         if (!this.enabled || !this.initialized) return;
         this.playTone(200, 0.2, 'sine', 0.2);
-    }
-
-    // Play bounce sound for animations
-    playBounce() {
-        if (!this.enabled || !this.initialized) return;
-        this.playTone(400, 0.05, 'sine', 0.2);
-    }
-
-    // Play whoosh sound for moving shapes
-    playWhoosh() {
-        if (!this.enabled || !this.initialized) return;
-        const ctx = this.audioContext;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        const filter = ctx.createBiquadFilter();
-
-        osc.type = 'sawtooth';
-        filter.type = 'lowpass';
-
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.frequency.setValueAtTime(100, ctx.currentTime);
-        filter.frequency.setValueAtTime(1000, ctx.currentTime);
-        filter.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.2);
-
-        gain.gain.setValueAtTime(0.1, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-
-        osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + 0.2);
     }
 
     // Helper: Play a simple tone
